@@ -4,7 +4,7 @@ import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import { useRouter, useSearchParams } from 'next/navigation';
 
 function SearchFilm() {
-  const [filmId, setfilmId] = useState("");
+  const [filmTitle, setfilmTitle] = useState("");
   const [titleError, setTitleError] = useState("");
   const searchParams = useSearchParams()
   const title = searchParams.get('title')
@@ -12,16 +12,16 @@ function SearchFilm() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!filmId) {
+    if (!filmTitle) {
       setTitleError("Please input film title!");
       return;
     }
-    router.push(`/?title=${filmId}`);
+    router.push(`/?title=${filmTitle}`);
   };
 
   const handleChangeTitle = useCallback(
     ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
-      setfilmId(value);
+      setfilmTitle(value);
       if (titleError && value) {
         setTitleError("");
       }
