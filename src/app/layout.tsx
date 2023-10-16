@@ -1,3 +1,4 @@
+import QueryProvider from '@/providers/query-provider'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -16,7 +17,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <QueryProvider>
+        <body className={inter.className}>
+          <main className="flex min-h-screen flex-col items-center p-24">
+            {children}
+          </main>
+        </body>
+      </QueryProvider>
     </html>
   )
 }
